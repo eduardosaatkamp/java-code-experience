@@ -7,3 +7,12 @@
 /.idea/compiler.xml
 /.idea/jarRepositories.xml
 /meuPrimeiroProgramaJava/target/classes/br/com/dio/primeiroPrograma.class
+/CriandoUmBancoDigitalComJava/target/classes/com/example/Banco.class
+/CriandoUmBancoDigitalComJava/target/classes/com/example/CartaoDebito.class
+/CriandoUmBancoDigitalComJava/target/test-classes/com/example/CartaoDebitoTest.class
+/CriandoUmBancoDigitalComJava/target/classes/com/example/Cliente.class
+/CriandoUmBancoDigitalComJava/target/classes/com/example/Conta.class
+/CriandoUmBancoDigitalComJava/target/classes/com/example/ContaCorrente.class
+/CriandoUmBancoDigitalComJava/target/classes/com/example/ContaPoupanca.class
+/CriandoUmBancoDigitalComJava/target/classes/com/example/IConta.class
+/CriandoUmBancoDigitalComJava/target/classes/com/example/Main.class

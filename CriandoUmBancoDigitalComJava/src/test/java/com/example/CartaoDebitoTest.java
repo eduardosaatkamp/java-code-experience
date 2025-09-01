@@ -1,11 +1,10 @@
 package com.example;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CartaoDebitoTest {
 
@@ -28,10 +27,10 @@ public class CartaoDebitoTest {
         System.setOut(original);
 
         String output = out.toString();
-        assertTrue(output.contains("=== Extrato do Cartao de Debito ==="));
-        assertTrue(output.contains("Titular: com.example.Cliente"));
-        assertTrue(output.contains(String.format("Agencia: %d", conta.getAgencia())));
-        assertTrue(output.contains(String.format("Numero: %d", conta.getNumero())));
-        assertTrue(output.contains(String.format("Saldo: %.2f", conta.getSaldo())));
+        Assertions.assertTrue(output.contains("=== Extrato do Cartao de Debito ==="));
+        Assertions.assertTrue(output.contains("Titular: com.example.Cliente"));
+        Assertions.assertTrue(output.contains(String.format("Agencia: %d", conta.getAgencia())));
+        Assertions.assertTrue(output.contains(String.format("Numero: %d", conta.getNumero())));
+        Assertions.assertTrue(output.contains(String.format("Saldo: %.2f", conta.getSaldo())));
     }
 }
