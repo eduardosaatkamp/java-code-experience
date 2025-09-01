@@ -1,10 +1,10 @@
-Projeto desenvolvido a partir da Dio de um Banco Digital em Java, com o objetivo de aprender sobre a linguagem, suas IDEs e orientação a objetos. O projeto abrange funcionalidades como contas correntes e contas poupança, além dos métodos de saque, depósito e transferência. Durante a sua implementação, foram aplicados conceitos fundamentais, tais como abstração, encapsulamento, herança, polimorfismo e modificadores de acesso.
+Projeto desenvolvido a partir da Dio de um com.example.Banco Digital em Java, com o objetivo de aprender sobre a linguagem, suas IDEs e orientação a objetos. O projeto abrange funcionalidades como contas correntes e contas poupança, além dos métodos de saque, depósito e transferência. Durante a sua implementação, foram aplicados conceitos fundamentais, tais como abstração, encapsulamento, herança, polimorfismo e modificadores de acesso.
 
 <a href="https://github.com/eduardosaatkamp/PooNoReinoAnimal" target="_blank" rel="noopener noreferrer">Conheça esse projeto de PooNoReinoAnimal em JAVA também.</a><br>
 <a href="https://github.com/eduardosaatkamp/formulasDeFisica" target="_blank" rel="noopener noreferrer">Conheça esse projeto de fórmulas utilizadas nas ciências exatas em diferentes linguagens.</a><br>
 <a href="https://github.com/eduardosaatkamp/OtakuJUnit" target="_blank" rel="noopener noreferrer">Conheça esse projeto de teste unitários em Junit.</a><br>
 
-# Criando um Banco Digital com Java e Orientação a Objetos
+# Criando um com.example.Banco Digital com Java e Orientação a Objetos
 
 Elaborado com base e para conclusão de curso na plataforma Dio.
 
@@ -30,5 +30,5 @@ Disponibilizado com ♥ por [cami-la](https://www.linkedin.com/in/cami-la/ "cami
 
 ```bash
 javac -d bin src/*.java
-java -cp bin Main
+java -cp bin com.example.Main
 ```

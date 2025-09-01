@@ -1,15 +1,17 @@
+package com.example;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class CartaoDebitoTest {
 
     private Conta criarConta() {
         Cliente cliente = new Cliente();
-        cliente.setNome("Cliente");
+        cliente.setNome("com.example.Cliente");
         return new ContaCorrente(cliente);
     }
 
@@ -27,7 +29,7 @@ public class CartaoDebitoTest {
 
         String output = out.toString();
         assertTrue(output.contains("=== Extrato do Cartao de Debito ==="));
-        assertTrue(output.contains("Titular: Cliente"));
+        assertTrue(output.contains("Titular: com.example.Cliente"));
         assertTrue(output.contains(String.format("Agencia: %d", conta.getAgencia())));
         assertTrue(output.contains(String.format("Numero: %d", conta.getNumero())));
         assertTrue(output.contains(String.format("Saldo: %.2f", conta.getSaldo())));
