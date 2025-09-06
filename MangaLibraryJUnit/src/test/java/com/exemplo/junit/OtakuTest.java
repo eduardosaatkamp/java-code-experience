@@ -1,13 +1,13 @@
 package com.exemplo.junit;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
 public class OtakuTest {
     @Test
-    public void testObterAnoDoAnimeMaisAntigo() {
+    void testObterAnoDoAnimeMaisAntigo() {
         Otaku leo = new Otaku("Leo");
         Anime anime1 = new Anime("Naruto", "Masashi Kishimoto", 2002, LocalDate.of(2002, 10, 3));
         Anime anime2 = new Anime("One Piece", "Eiichiro Oda", 1997, LocalDate.of(1997, 10, 20));
@@ -19,6 +19,6 @@ public class OtakuTest {
         leo.getcoletaneaDoOtaku().add(anime3);
         leo.getcoletaneaDoOtaku().add(anime4);
 
-        Assert.assertEquals(1984, leo.obterAnoDoAnimeMaisAntigo());
+        Assertions.assertEquals(1984, leo.obterAnoDoAnimeMaisAntigo());
     }
 }
