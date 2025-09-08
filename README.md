@@ -1,24 +1,22 @@
-# Java Code Experience
+Iniflex - Teste Prático Java
 
-Repositório com exercícios e pequenos projetos para praticar programação orientada a objetos em Java, testes unitários e outros conceitos.
-Entre os exemplos, há um projeto de banco digital desenvolvido para aplicar conceitos de POO, 
-como herança, polimorfismo, abstração e encapsulamento. E serão adicionados mais exemplos e projetos ao longo do tempo.
+Projeto desenvolvido em Java 17 como parte do teste prático da Iniflex.
 
-## Tecnologias e conhecimentos
+Estrutura
 
-- Java
-- Maven
-- JUnit
-- Programação Orientada a Objetos
-    - Herança
-    - Polimorfismo
-    - Abstração
-    - Encapsulamento
-    - Métodos
+Pessoa: classe base com nome e data de nascimento.
 
-## Estrutura
+Funcionario: estende Pessoa e adiciona salário e função.
 
-- `CriandoUmBancoDigitalComJava/` – projeto de banco digital
-- `PooNoReinoAnimal/` – exemplos de POO no contexto do reino animal
-- `meuPrimeiroProgramaJava/` – primeiros programas em Java
+FuncionarioService: regras de negócio (remoções, aumentos, agrupamentos, etc).
+
+Principal: execução dos requisitos do teste.
+
+Testes unitários: implementados com JUnit 5.
+
+Requisitos
+
+Java 17+
+
+Maven 3.8+
 
