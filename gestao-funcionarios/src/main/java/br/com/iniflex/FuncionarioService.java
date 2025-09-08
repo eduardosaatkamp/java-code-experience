@@ -44,7 +44,10 @@ public class FuncionarioService {
     }
 
     public Funcionario maisVelho(List<Funcionario> lista) {
-        return lista.stream().min(Comparator.comparing(Funcionario::getDataNascimento)).orElseThrow();
+        if (lista.isEmpty()) {
+            throw new IllegalStateException("Lista de funcionários vazia");
+        }
+        return lista.stream().min(Comparator.comparing(Funcionario::getDataNascimento)).get();
     }
 
     public List<Funcionario> ordenarPorNome(List<Funcionario> lista) {
