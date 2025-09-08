@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>PooNoReinoAnimal</module>
+        <module>gestao-funcionarios</module>
     </modules>
     <dependencies>
         <dependency>
