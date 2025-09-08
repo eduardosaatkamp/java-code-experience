@@ -5,7 +5,6 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -15,7 +14,6 @@ import java.util.logging.Logger;
 public class Principal {
 
     private static final Locale PT_BR = new Locale("pt", "BR");
-    private static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final NumberFormat NF = NumberFormat.getNumberInstance(PT_BR); // 1.234,56
     private static final BigDecimal SAL_MIN = new BigDecimal("1212.00");
     private static final BigDecimal FATOR_AUMENTO = new BigDecimal("1.10");
@@ -76,21 +74,10 @@ public class Principal {
     }
 
     private static void imprimirFuncionario(Funcionario f) {
-        String linha = String.format(
-                "%-10s | Nasc.: %s | Salário: %s | Função: %s",
-                f.getNome(),
-                f.getDataNascimento().format(DF),
-                NF.format(f.getSalario()),
-                f.getFuncao()
-        );
-        System.out.println(linha);
+        System.out.println(FuncionarioFormatter.formatar(f));
     }
 
     private static void imprimirFuncionarioSimples(Funcionario f) {
-        System.out.println(
-                f.getNome() + " — " + f.getFuncao() +
-                        " — Nasc.: " + f.getDataNascimento().format(DF) +
-                        " — Salário: " + NF.format(f.getSalario())
-        );
+        System.out.println(FuncionarioFormatter.formatarSimples(f));
     }
 }
