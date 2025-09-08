@@ -51,8 +51,12 @@ public class Principal {
             });
 
             System.out.println("==== Aniversários em OUT (10) e DEZ (12) ====");
-            service.aniversariantesMeses(funcionarios, Month.OCTOBER, Month.DECEMBER)
-                    .forEach(Principal::imprimirFuncionarioSimples);
+            List<Funcionario> aniversariantes = service.aniversariantesMeses(funcionarios, Month.OCTOBER, Month.DECEMBER);
+            if (aniversariantes.isEmpty()) {
+                System.out.println("Nenhum funcionário faz aniversário nos meses informados");
+            } else {
+                aniversariantes.forEach(Principal::imprimirFuncionarioSimples);
+            }
 
             Funcionario maisVelho = service.maisVelho(funcionarios);
             int idade = Period.between(maisVelho.getDataNascimento(), LocalDate.now()).getYears();
