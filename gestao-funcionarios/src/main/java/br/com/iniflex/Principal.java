@@ -31,10 +31,15 @@ public class Principal {
         try {
             List<Funcionario> funcionarios = service.seed();
 
-            service.removerPorNome(funcionarios, "João");
-
             System.out.println("==== Funcionários (dados formatados) ====");
             funcionarios.forEach(Principal::imprimirFuncionario);
+
+            boolean removido = service.removerPorNome(funcionarios, "João");
+            if (removido) {
+                System.out.println("\nFuncionário removido com sucesso.");
+            } else {
+                System.out.println("\nNome não encontrado.");
+            }
 
             service.aplicarAumento(funcionarios, FATOR_AUMENTO);
 

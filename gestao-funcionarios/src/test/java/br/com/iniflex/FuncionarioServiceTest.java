@@ -23,9 +23,17 @@ class FuncionarioServiceTest {
 
     @Test
     void deveRemoverJoaoDaLista() {
-        service.removerPorNome(lista, "João");
+        boolean removido = service.removerPorNome(lista, "João");
+        assertTrue(removido);
         assertEquals(9, lista.size());
         assertTrue(lista.stream().noneMatch(f -> f.getNome().equalsIgnoreCase("João")));
+    }
+
+    @Test
+    void deveRetornarFalseQuandoNomeNaoEncontrado() {
+        boolean removido = service.removerPorNome(lista, "Fulano");
+        assertFalse(removido);
+        assertEquals(10, lista.size());
     }
 
     @Test

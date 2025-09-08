@@ -24,12 +24,12 @@ public class FuncionarioService {
         ));
     }
 
-    public void removerPorNome(List<Funcionario> lista, String nome) {
+    public boolean removerPorNome(List<Funcionario> lista, String nome) {
         validarLista(lista);
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("nome inválido");
         }
-        lista.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
+        return lista.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
     }
 
     public void aplicarAumento(List<Funcionario> lista, BigDecimal fator) {
