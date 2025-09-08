@@ -37,6 +37,8 @@ public class Principal {
                 new Funcionario("Helena",  LocalDate.of(1996, 9, 2),   bd("2799.93"), "Gerente")
         ));
 
+        FuncionarioService service = new FuncionarioService();
+
         // 3.2 – Remover “João”
         funcionarios.removeIf(f -> f.getNome().equalsIgnoreCase("João"));
 
@@ -45,9 +47,7 @@ public class Principal {
         funcionarios.forEach(Principal::imprimirFuncionario);
 
         // 3.4 – Aumento de 10%
-        funcionarios.forEach(f ->
-                f.setSalario(f.getSalario().multiply(bd("1.10")).setScale(2, RoundingMode.HALF_UP))
-        );
+        service.aplicarAumento(funcionarios, bd("10"));
 
         System.out.println("\n==== Após aumento de 10% ====");
         funcionarios.forEach(Principal::imprimirFuncionario);

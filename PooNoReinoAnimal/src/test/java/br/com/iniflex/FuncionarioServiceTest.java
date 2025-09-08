@@ -31,7 +31,7 @@ class FuncionarioServiceTest {
     @Test
     void deveAplicarAumentoDe10PorCento() {
         service.removerPorNome(lista, "João");
-        service.aplicarAumento(lista, new BigDecimal("1.10"));
+        service.aplicarAumento(lista, new BigDecimal("10"));
 
         // soma esperada (após remoção do João) = 31.978,18
         BigDecimal esperado = new BigDecimal("31978.18");
@@ -96,7 +96,7 @@ class FuncionarioServiceTest {
     @Test
     void deveCalcularSalariosMinimos() {
         service.removerPorNome(lista, "João");
-        service.aplicarAumento(lista, new BigDecimal("1.10"));
+        service.aplicarAumento(lista, new BigDecimal("10"));
 
         Map<String, BigDecimal> qtd = service.salariosMinimos(lista, new BigDecimal("1212.00"));
         // alguns asserts pontuais (após aumento):

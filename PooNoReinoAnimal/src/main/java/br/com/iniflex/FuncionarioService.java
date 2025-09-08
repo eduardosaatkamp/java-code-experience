@@ -28,7 +28,8 @@ public class FuncionarioService {
         lista.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
     }
 
-    public void aplicarAumento(List<Funcionario> lista, BigDecimal fator) {
+    public void aplicarAumento(List<Funcionario> lista, BigDecimal percentual) {
+        BigDecimal fator = BigDecimal.ONE.add(percentual.movePointLeft(2));
         for (Funcionario f : lista) {
             f.setSalario(f.getSalario().multiply(fator).setScale(2, RoundingMode.HALF_UP));
         }
