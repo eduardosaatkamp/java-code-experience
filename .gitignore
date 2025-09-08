@@ -1,6 +1,6 @@
 /meuPrimeiroProgramaJava/out/production/intellij/br/com/dio/primeiroPrograma.class
-/PooNoReinoAnimal/.gitignore
-/PooNoReinoAnimal/.gitattributes
+/gestao-funcionarios/.gitignore
+/gestao-funcionarios/.gitattributes
 /meuPrimeiroProgramaJava/intellij.iml
 /meuPrimeiroProgramaJava/meuPrimeiroProgramaJava.iml
 /meuPrimeiroProgramaJava/intellij.iml
@@ -17,3 +17,5 @@
 /CriandoUmBancoDigitalComJava/target/classes/com/example/IConta.class
 /CriandoUmBancoDigitalComJava/target/classes/com/example/Main.class
 /java-codex-experience.iml
+
+/gestao-funcionarios/target/
