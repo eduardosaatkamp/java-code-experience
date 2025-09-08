@@ -25,20 +25,33 @@ public class FuncionarioService {
     }
 
     public void removerPorNome(List<Funcionario> lista, String nome) {
+        validarLista(lista);
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("nome inválido");
+        }
         lista.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
     }
 
     public void aplicarAumento(List<Funcionario> lista, BigDecimal fator) {
+        validarLista(lista);
+        if (fator == null || fator.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("fator inválido");
+        }
         for (Funcionario f : lista) {
             f.setSalario(f.getSalario().multiply(fator).setScale(2, RoundingMode.HALF_UP));
         }
     }
 
     public Map<String, List<Funcionario>> agruparPorFuncao(List<Funcionario> lista) {
+        validarLista(lista);
         return lista.stream().collect(Collectors.groupingBy(Funcionario::getFuncao, LinkedHashMap::new, Collectors.toList()));
     }
 
     public List<Funcionario> aniversariantesMeses(List<Funcionario> lista, Month... meses) {
+        validarLista(lista);
+        if (meses == null || meses.length == 0 || Arrays.stream(meses).anyMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("meses inválidos");
+        }
         Set<Integer> filtro = Arrays.stream(meses).map(Month::getValue).collect(Collectors.toSet());
         return lista.stream().filter(f -> filtro.contains(f.getDataNascimento().getMonthValue())).toList();
     }
@@ -48,12 +61,14 @@ public class FuncionarioService {
     }
 
     public List<Funcionario> ordenarPorNome(List<Funcionario> lista) {
+        validarLista(lista);
         return lista.stream()
                 .sorted(Comparator.comparing(Funcionario::getNome, String.CASE_INSENSITIVE_ORDER))
                 .toList();
     }
 
     public BigDecimal totalSalarios(List<Funcionario> lista) {
+        validarLista(lista);
         return lista.stream().map(Funcionario::getSalario).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
@@ -63,6 +78,12 @@ public class FuncionarioService {
             out.put(f.getNome(), f.getSalario().divide(salarioMinimo, 2, RoundingMode.HALF_UP));
         }
         return out;
+    }
+
+    private static <T> void validarLista(List<T> lista) {
+        if (lista == null || lista.isEmpty()) {
+            throw new IllegalArgumentException("lista inválida");
+        }
     }
 
     // --- helpers ---
