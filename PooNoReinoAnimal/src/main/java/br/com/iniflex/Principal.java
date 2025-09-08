@@ -6,14 +6,12 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
 
     private static final Locale PT_BR = new Locale("pt", "BR");
-    private static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final NumberFormat NF = NumberFormat.getNumberInstance(PT_BR); // 1.234,56
     private static final BigDecimal SAL_MIN = new BigDecimal("1212.00");
 
@@ -42,7 +40,7 @@ public class Principal {
 
         // 3.3 – Imprimir todos (data dd/MM/aaaa, números 1.234,56)
         System.out.println("==== Funcionários (dados formatados) ====");
-        funcionarios.forEach(Principal::imprimirFuncionario);
+        funcionarios.forEach(System.out::println);
 
         // 3.4 – Aumento de 10%
         funcionarios.forEach(f ->
@@ -50,7 +48,7 @@ public class Principal {
         );
 
         System.out.println("\n==== Após aumento de 10% ====");
-        funcionarios.forEach(Principal::imprimirFuncionario);
+        funcionarios.forEach(System.out::println);
 
         // 3.5 – Agrupar por função
         Map<String, List<Funcionario>> porFuncao = funcionarios.stream()
@@ -60,7 +58,7 @@ public class Principal {
         System.out.println("\n==== Agrupados por função ====");
         porFuncao.forEach((funcao, lista) -> {
             System.out.println("Função: " + funcao);
-            lista.forEach(Principal::imprimirFuncionarioSimples);
+            lista.forEach(System.out::println);
             System.out.println();
         });
 
@@ -71,7 +69,7 @@ public class Principal {
                     int m = f.getDataNascimento().getMonthValue();
                     return (m == Month.OCTOBER.getValue() || m == Month.DECEMBER.getValue());
                 })
-                .forEach(Principal::imprimirFuncionarioSimples);
+                .forEach(System.out::println);
 
         // 3.9 – Funcionário com maior idade (nome e idade)
         Funcionario maisVelho = funcionarios.stream()
@@ -85,7 +83,7 @@ public class Principal {
         System.out.println("\n==== Ordenados por nome (A-Z) ====");
         funcionarios.stream()
                 .sorted(Comparator.comparing(Funcionario::getNome, String.CASE_INSENSITIVE_ORDER))
-                .forEach(Principal::imprimirFuncionarioSimples);
+                .forEach(System.out::println);
 
         // 3.11 – Total dos salários
         BigDecimal totalSalarios = funcionarios.stream()
@@ -104,22 +102,5 @@ public class Principal {
 
     private static BigDecimal bd(String v) { return new BigDecimal(v); }
 
-    private static void imprimirFuncionario(Funcionario f) {
-        String linha = String.format(
-                "%-10s | Nasc.: %s | Salário: %s | Função: %s",
-                f.getNome(),
-                f.getDataNascimento().format(DF),
-                NF.format(f.getSalario()),
-                f.getFuncao()
-        );
-        System.out.println(linha);
-    }
-
-    private static void imprimirFuncionarioSimples(Funcionario f) {
-        System.out.println(
-                f.getNome() + " — " + f.getFuncao() +
-                        " — Nasc.: " + f.getDataNascimento().format(DF) +
-                        " — Salário: " + NF.format(f.getSalario())
-        );
-    }
+    
 }
