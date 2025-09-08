@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Principal {
 
@@ -17,6 +19,7 @@ public class Principal {
     private static final NumberFormat NF = NumberFormat.getNumberInstance(PT_BR); // 1.234,56
     private static final BigDecimal SAL_MIN = new BigDecimal("1212.00");
     private static final BigDecimal FATOR_AUMENTO = new BigDecimal("1.10");
+    private static final Logger LOGGER = Logger.getLogger(Principal.class.getName());
 
     static {
         NF.setMinimumFractionDigits(2);
@@ -25,46 +28,51 @@ public class Principal {
 
     public static void main(String[] args) {
         FuncionarioService service = new FuncionarioService();
-        List<Funcionario> funcionarios = service.seed();
+        try {
+            List<Funcionario> funcionarios = service.seed();
 
-        service.removerPorNome(funcionarios, "João");
+            service.removerPorNome(funcionarios, "João");
 
-        System.out.println("==== Funcionários (dados formatados) ====");
-        funcionarios.forEach(Principal::imprimirFuncionario);
+            System.out.println("==== Funcionários (dados formatados) ====");
+            funcionarios.forEach(Principal::imprimirFuncionario);
 
-        service.aplicarAumento(funcionarios, FATOR_AUMENTO);
+            service.aplicarAumento(funcionarios, FATOR_AUMENTO);
 
-        System.out.println("\n==== Após aumento de 10% ====");
-        funcionarios.forEach(Principal::imprimirFuncionario);
+            System.out.println("\n==== Após aumento de 10% ====");
+            funcionarios.forEach(Principal::imprimirFuncionario);
 
-        Map<String, List<Funcionario>> porFuncao = service.agruparPorFuncao(funcionarios);
+            Map<String, List<Funcionario>> porFuncao = service.agruparPorFuncao(funcionarios);
 
-        System.out.println("\n==== Agrupados por função ====");
-        porFuncao.forEach((funcao, lista) -> {
-            System.out.println("Função: " + funcao);
-            lista.forEach(Principal::imprimirFuncionarioSimples);
-            System.out.println();
-        });
+            System.out.println("\n==== Agrupados por função ====");
+            porFuncao.forEach((funcao, lista) -> {
+                System.out.println("Função: " + funcao);
+                lista.forEach(Principal::imprimirFuncionarioSimples);
+                System.out.println();
+            });
 
-        System.out.println("==== Aniversários em OUT (10) e DEZ (12) ====");
-        service.aniversariantesMeses(funcionarios, Month.OCTOBER, Month.DECEMBER)
-                .forEach(Principal::imprimirFuncionarioSimples);
+            System.out.println("==== Aniversários em OUT (10) e DEZ (12) ====");
+            service.aniversariantesMeses(funcionarios, Month.OCTOBER, Month.DECEMBER)
+                    .forEach(Principal::imprimirFuncionarioSimples);
 
-        Funcionario maisVelho = service.maisVelho(funcionarios);
-        int idade = Period.between(maisVelho.getDataNascimento(), LocalDate.now()).getYears();
-        System.out.println("\n==== Mais velho ====");
-        System.out.println(maisVelho.getNome() + " - " + idade + " anos");
+            Funcionario maisVelho = service.maisVelho(funcionarios);
+            int idade = Period.between(maisVelho.getDataNascimento(), LocalDate.now()).getYears();
+            System.out.println("\n==== Mais velho ====");
+            System.out.println(maisVelho.getNome() + " - " + idade + " anos");
 
-        System.out.println("\n==== Ordenados por nome (A-Z) ====");
-        service.ordenarPorNome(funcionarios).forEach(Principal::imprimirFuncionarioSimples);
+            System.out.println("\n==== Ordenados por nome (A-Z) ====");
+            service.ordenarPorNome(funcionarios).forEach(Principal::imprimirFuncionarioSimples);
 
-        BigDecimal totalSalarios = service.totalSalarios(funcionarios);
-        System.out.println("\n==== Total de salários ====");
-        System.out.println(NF.format(totalSalarios));
+            BigDecimal totalSalarios = service.totalSalarios(funcionarios);
+            System.out.println("\n==== Total de salários ====");
+            System.out.println(NF.format(totalSalarios));
 
-        System.out.println("\n==== Salários mínimos por funcionário (min = R$ 1.212,00) ====");
-        service.salariosMinimos(funcionarios, SAL_MIN)
-                .forEach((nome, qtd) -> System.out.println(nome + " — " + NF.format(qtd) + " salários mínimos"));
+            System.out.println("\n==== Salários mínimos por funcionário (min = R$ 1.212,00) ====");
+            service.salariosMinimos(funcionarios, SAL_MIN)
+                    .forEach((nome, qtd) -> System.out.println(nome + " — " + NF.format(qtd) + " salários mínimos"));
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            LOGGER.log(Level.SEVERE, "Erro ao processar funcionários", e);
+            System.out.println("Ocorreu um erro ao processar os funcionários. O programa será encerrado.");
+        }
     }
 
     private static void imprimirFuncionario(Funcionario f) {
