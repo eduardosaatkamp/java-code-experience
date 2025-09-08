@@ -77,6 +77,12 @@ class FuncionarioServiceTest {
     }
 
     @Test
+    void deveFalharQuandoListaVazia() {
+        IllegalStateException ex = assertThrows(IllegalStateException.class, () -> service.maisVelho(List.of()));
+        assertEquals("Lista de funcionários vazia", ex.getMessage());
+    }
+
+    @Test
     void deveOrdenarPorNome() {
         service.removerPorNome(lista, "João");
         List<Funcionario> ordenados = service.ordenarPorNome(lista);
