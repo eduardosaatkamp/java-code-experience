@@ -107,5 +107,47 @@ class FuncionarioServiceTest {
         // Arthur 4.071,84 -> 4.479,02 => 3,70 SM
         assertEquals(0, qtd.get("Arthur").compareTo(new BigDecimal("3.70")));
     }
+
+    @Test
+    void deveValidarRemoverPorNome() {
+        assertThrows(IllegalArgumentException.class, () -> service.removerPorNome(null, "João"));
+        assertThrows(IllegalArgumentException.class, () -> service.removerPorNome(List.of(), "João"));
+        assertThrows(IllegalArgumentException.class, () -> service.removerPorNome(lista, ""));
+    }
+
+    @Test
+    void deveValidarAplicarAumento() {
+        assertThrows(IllegalArgumentException.class, () -> service.aplicarAumento(null, BigDecimal.ONE));
+        assertThrows(IllegalArgumentException.class, () -> service.aplicarAumento(List.of(), BigDecimal.ONE));
+        assertThrows(IllegalArgumentException.class, () -> service.aplicarAumento(lista, BigDecimal.ZERO));
+        assertThrows(IllegalArgumentException.class, () -> service.aplicarAumento(lista, new BigDecimal("-1")));
+        assertThrows(IllegalArgumentException.class, () -> service.aplicarAumento(lista, null));
+    }
+
+    @Test
+    void deveValidarAgruparPorFuncao() {
+        assertThrows(IllegalArgumentException.class, () -> service.agruparPorFuncao(null));
+        assertThrows(IllegalArgumentException.class, () -> service.agruparPorFuncao(List.of()));
+    }
+
+    @Test
+    void deveValidarAniversariantesMeses() {
+        assertThrows(IllegalArgumentException.class, () -> service.aniversariantesMeses(null, Month.JANUARY));
+        assertThrows(IllegalArgumentException.class, () -> service.aniversariantesMeses(List.of(), Month.JANUARY));
+        assertThrows(IllegalArgumentException.class, () -> service.aniversariantesMeses(lista, (Month[]) null));
+        assertThrows(IllegalArgumentException.class, () -> service.aniversariantesMeses(lista, new Month[]{null}));
+    }
+
+    @Test
+    void deveValidarOrdenarPorNome() {
+        assertThrows(IllegalArgumentException.class, () -> service.ordenarPorNome(null));
+        assertThrows(IllegalArgumentException.class, () -> service.ordenarPorNome(List.of()));
+    }
+
+    @Test
+    void deveValidarTotalSalarios() {
+        assertThrows(IllegalArgumentException.class, () -> service.totalSalarios(null));
+        assertThrows(IllegalArgumentException.class, () -> service.totalSalarios(List.of()));
+    }
 }
 
